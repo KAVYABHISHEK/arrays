@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sorting Algorithms</title>
+</head>
+<body>
+  <h1>Sorting Algorithms</h1>
+  
+  <label for="inputNumbers">Enter numbers (comma-separated): </label>
+  <input type="text" id="inputNumbers">
+  
+  <label for="sortAlgorithm">Select sorting algorithm: </label>
+  <select id="sortAlgorithm">
+    <option value="merge">Merge Sort</option>
+    <option value="insert">Insertion Sort</option>
+    <option value="quick">Quick Sort</option>
+  </select>
+  
+  <button onclick="sortNumbers()">Sort</button>
+  
+  <p>Sorted numbers: <span id="sortedNumbers"></span></p>
+  
+  <script>
+    function sortNumbers() {
+      const inputElement = document.getElementById("inputNumbers");
+      const sortedNumbersElement = document.getElementById("sortedNumbers");
+      const sortAlgorithm = document.getElementById("sortAlgorithm").value;
+      
+      const inputNumbers = inputElement.value.split(',').map(Number);
+      let sortedNumbers;
+      
+      if (sortAlgorithm === "merge") {
+        sortedNumbers = mergeSort(inputNumbers);
+      } else if (sortAlgorithm === "insert") {
+        sortedNumbers = insertionSort(inputNumbers);
+      } else if (sortAlgorithm === "quick") {
+        sortedNumbers = quickSort(inputNumbers);
+      }
+      
+      sortedNumbersElement.textContent = sortedNumbers.join(', ');
+    }
+    
+    function mergeSort(arr) {
+      // Implement Merge Sort algorithm here
+  if (arr.length <= 1) {
+    return arr; // Base case: already sorted or empty
+  }
+
+  const middle = Math.floor(arr.length / 2);
+  const left = arr.slice(0, middle);
+  const right = arr.slice(middle);
+
+  return merge(mergeSort(left), mergeSort(right));
+}
+
+function merge(left, right) {
+  let result = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      result.push(left[leftIndex]);
+      leftIndex++;
+    } else {
+      result.push(right[rightIndex]);
+      rightIndex++;
+    }
+  }
+
+  return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+}
+    
+    function insertionSort(arr) {
+      // Implement Insertion Sort algorithm here
+  for (let i = 1; i < arr.length; i++) {
+    let currentElement = arr[i];
+    let j = i - 1;
+
+    while (j >= 0 && arr[j] > currentElement) {
+      arr[j + 1] = arr[j];
+      j--;
+    }
+
+    arr[j + 1] = currentElement;
+  }
+
+  return arr;
+}
+
+function quickSort(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
+
+  const pivot = arr[Math.floor(arr.length / 2)];
+  const less = [];
+  const equal = [];
+  const greater = [];
+
+  for (let element of arr) {
+    if (element < pivot) {
+      less.push(element);
+    } else if (element === pivot) {
+      equal.push(element);
+    } else {
+      greater.push(element);
+    }
+  }
+
+  return quickSort(less).concat(equal, quickSort(greater));
+}
+      // Implement Quick Sort algorithm here
+  </script>
+</body>
+</html>
