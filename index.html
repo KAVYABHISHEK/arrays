@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sorting Algorithms</title>
+</head>
+<body>
+  <h1>Sorting Algorithms</h1>
+  
+  <label for="inputNumbers">Enter numbers (comma-separated): </label>
+  <input type="text" id="inputNumbers">
+  
+  <label for="sortAlgorithm">Select sorting algorithm: </label>
+  <select id="sortAlgorithm">
+    <option value="merge">Merge Sort</option>
+    <option value="insert">Insertion Sort</option>
+    <option value="quick">Quick Sort</option>
+  </select>
+  
+  <button onclick="sortNumbers()">Sort</button>
+  
+  <p>Sorted numbers: <span id="sortedNumbers"></span></p>
+  
+  <script>
+    function sortNumbers() {
+      const inputElement = document.getElementById("inputNumbers");
+      const sortedNumbersElement = document.getElementById("sortedNumbers");
+      const sortAlgorithm = document.getElementById("sortAlgorithm").value;
+      
+      const inputNumbers = inputElement.value.split(',').map(Number);
+      let sortedNumbers;
+      
+      if (sortAlgorithm === "merge") {
+        sortedNumbers = mergeSort(inputNumbers);
+      } else if (sortAlgorithm === "insert") {
+        sortedNumbers = insertionSort(inputNumbers);
+      } else if (sortAlgorithm === "quick") {
+        sortedNumbers = quickSort(inputNumbers);
+      }
+      
+      sortedNumbersElement.textContent = sortedNumbers.join(', ');
+    }
+    
+    function mergeSort(arr) {
+      // Implement Merge Sort algorithm here
+      return arr;
+    }
+    
+    function insertionSort(arr) {
+      // Implement Insertion Sort algorithm here
+      return arr;
+    }
+    
+    function quickSort(arr) {
+      // Implement Quick Sort algorithm here
+      return arr;
+    }
+  </script>
+</body>
+</html>
